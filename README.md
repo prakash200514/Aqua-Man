@@ -29,3 +29,15 @@ api/categories.php
 api/cart.php
 api/orders.php
 api/background_videos.php (Upload and active toggle)
+
+[NEW] backend/uploads/
+Directories fish_images/ and videos/ for storing uploaded assets.
+3. Frontend Layer (React + Vite) (frontend/)
+We will initialize a new React project using Vite.
+
+Architecture and Dependencies
+React.js with Vanilla CSS for full styling control.
+React Router DOM for routing.
+Axios for API requests.
+React Toastify for toast notifications.
+Lucide React (or similar) for modern icons.
