@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap');
 
 :root {
-  /* Grand Level Palette - Burgundy Theme */
-  --bg-abyss: #1A050B;
-  --bg-surface: #2A0813;
-  --bg-card: rgba(42, 8, 19, 0.4);
-  --primary-neon: #FFA9BB;
-  --accent-coral: #E95A78;
+  /* Grand Level Palette - Deep Ocean Theme */
+  --bg-abyss: #01060D;
+  --bg-surface: #041222;
+  --bg-card: rgba(4, 18, 34, 0.4);
+  --primary-neon: #00F2FE;
+  --accent-coral: #FF4D6D;
   --accent-gold: #FFD166;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-border-hover: rgba(255, 255, 255, 0.2);
+  --glass-bg: rgba(4, 18, 34, 0.4);
+  --glass-border: rgba(0, 242, 254, 0.15);
+  --glass-border-hover: rgba(0, 242, 254, 0.4);
   --text-main: #F8FAFC;
-  --text-muted: rgba(255, 255, 255, 0.6);
+  --text-muted: #94A3B8;
   --danger: #ef4444;
   --success: #10b981;
 }
@@ -29,8 +29,8 @@ body {
   color: var(--text-main);
   overflow-x: hidden;
   background-image: 
-    radial-gradient(circle at top left, #3d0b1a, transparent 40%),
-    radial-gradient(circle at bottom right, #2a0813, transparent 50%);
+    radial-gradient(circle at 15% 50%, rgba(0, 242, 254, 0.05), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(255, 77, 109, 0.05), transparent 25%);
   background-attachment: fixed;
 }
 
@@ -93,16 +93,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  background: var(--glass-bg);
-  color: var(--text-main);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, var(--primary-neon), #00A3FF);
+  color: #000;
+  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.4);
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(0, 242, 254, 0.6);
 }
 
 .btn-primary::after {
@@ -110,7 +108,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 0; left: -100%;
   width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
   transition: all 0.6s ease;
 }
 
@@ -159,8 +157,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes glowPulse {
-  0%, 100% { filter: drop-shadow(0 0 15px rgba(233,90,120,0.4)); }
-  50% { filter: drop-shadow(0 0 30px rgba(233,90,120,0.8)); }
+  0%, 100% { filter: drop-shadow(0 0 15px rgba(0,242,254,0.4)); }
+  50% { filter: drop-shadow(0 0 30px rgba(0,242,254,0.8)); }
 }
 
 .glow-pulse {
@@ -420,10 +418,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .filter-btn.active {
-  background: var(--text-main);
+  background: var(--primary-neon);
   color: #000;
-  border-color: var(--text-main);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  border-color: var(--primary-neon);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
 }
 
 /* Cart Overlay, Inputs, Admin styling kept similar but inheriting new colors */
