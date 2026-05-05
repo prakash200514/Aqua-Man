@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import FishCard from '../components/FishCard';
-import { Bell } from 'lucide-react';
+import { Filter, ChevronRight } from 'lucide-react';
 
 const Products = () => {
     const [fishes, setFishes] = useState([]);
@@ -37,113 +37,99 @@ const Products = () => {
     }, [selectedCategory]);
 
     return (
-        <div style={{ paddingTop: '80px', paddingBottom: '120px', minHeight: '100vh', paddingLeft: '20px', paddingRight: '20px' }}>
-            
-            {/* Header Section */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                    <img 
-                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80" 
-                        alt="User" 
-                        style={{ width: '45px', height: '45px', borderRadius: '50%', objectFit: 'cover' }} 
-                    />
-                    <div>
-                        <div style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)' }}>Hello Jobby 👋</div>
-                        <div style={{ fontSize: '1.1rem', fontWeight: '600' }}>Good Morning</div>
+        <div className="container" style={{ paddingTop: '120px', paddingBottom: '100px', minHeight: '100vh' }}>
+            <div style={{ marginBottom: '40px' }} className="fade-in">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', marginBottom: '15px' }}>
+                    <span>Home</span> <ChevronRight size={14} /> <span style={{ color: '#00F2FE' }}>Grand Gallery</span>
+                </div>
+                <h1 style={{ fontSize: '3.5rem', marginBottom: '15px', fontFamily: 'Syne, sans-serif' }}>Shop <span style={{ color: '#00F2FE' }}>Collection</span></h1>
+                <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.2rem', maxWidth: '600px' }}>Filter through our exclusive collection of the most vibrant and beautiful aquatic life.</p>
+            </div>
+
+            <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start' }}>
+                
+                {/* Sidebar Filters */}
+                <div style={{
+                    width: '280px',
+                    flexShrink: 0,
+                    background: 'rgba(4, 18, 34, 0.4)',
+                    backdropFilter: 'blur(20px)',
+                    border: '1px solid rgba(0, 242, 254, 0.1)',
+                    borderRadius: '20px',
+                    padding: '30px',
+                    position: 'sticky',
+                    top: '100px'
+                }} className="fade-in" style={{ animationDelay: '0.2s' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#00F2FE', fontSize: '1.2rem', fontWeight: '600', marginBottom: '25px' }}>
+                        <Filter size={20} /> Categories
+                    </div>
+                    
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                        <button 
+                            onClick={() => setSelectedCategory('')}
+                            style={{
+                                background: selectedCategory === '' ? 'rgba(0, 242, 254, 0.1)' : 'transparent',
+                                border: 'none',
+                                color: selectedCategory === '' ? '#00F2FE' : 'white',
+                                padding: '12px 15px',
+                                borderRadius: '10px',
+                                textAlign: 'left',
+                                cursor: 'pointer',
+                                fontSize: '1rem',
+                                transition: 'all 0.3s',
+                                display: 'flex', justifyContent: 'space-between'
+                            }}
+                            onMouseEnter={(e) => { if(selectedCategory !== '') e.currentTarget.style.background = 'rgba(255,255,255,0.05)' }}
+                            onMouseLeave={(e) => { if(selectedCategory !== '') e.currentTarget.style.background = 'transparent' }}
+                        >
+                            All Collection
+                        </button>
+                        
+                        {categories.map(cat => (
+                            <button 
+                                key={cat.id} 
+                                onClick={() => setSelectedCategory(cat.id)}
+                                style={{
+                                    background: selectedCategory === cat.id ? 'rgba(0, 242, 254, 0.1)' : 'transparent',
+                                    border: 'none',
+                                    color: selectedCategory === cat.id ? '#00F2FE' : 'white',
+                                    padding: '12px 15px',
+                                    borderRadius: '10px',
+                                    textAlign: 'left',
+                                    cursor: 'pointer',
+                                    fontSize: '1rem',
+                                    transition: 'all 0.3s'
+                                }}
+                                onMouseEnter={(e) => { if(selectedCategory !== cat.id) e.currentTarget.style.background = 'rgba(255,255,255,0.05)' }}
+                                onMouseLeave={(e) => { if(selectedCategory !== cat.id) e.currentTarget.style.background = 'transparent' }}
+                            >
+                                {cat.category_name}
+                            </button>
+                        ))}
                     </div>
                 </div>
-                
-                <div style={{
-                    width: '45px', height: '45px',
-                    borderRadius: '50%',
-                    background: 'rgba(255,255,255,0.1)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    position: 'relative'
-                }}>
-                    <Bell size={20} color="white" />
-                    <div style={{
-                        position: 'absolute', top: '10px', right: '12px',
-                        width: '8px', height: '8px', background: '#FF3B5C',
-                        borderRadius: '50%'
-                    }}></div>
-                </div>
-            </div>
 
-            {/* Discover Header */}
-            <h1 style={{
-                fontSize: '2.5rem',
-                fontWeight: '700',
-                marginBottom: '30px',
-                fontFamily: 'Outfit, sans-serif',
-                lineHeight: '1.2'
-            }}>
-                Discover our<br />grand collection.
-            </h1>
-
-            {/* Categories */}
-            <div style={{
-                display: 'flex', gap: '15px', overflowX: 'auto', paddingBottom: '10px', marginBottom: '30px',
-                WebkitOverflowScrolling: 'touch',
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none'
-            }}>
-                <button 
-                    onClick={() => setSelectedCategory('')}
-                    style={{
-                        padding: '12px 24px',
-                        borderRadius: '30px',
-                        border: 'none',
-                        background: selectedCategory === '' ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.05)',
-                        color: 'white',
-                        fontSize: '0.95rem',
-                        fontWeight: '500',
-                        cursor: 'pointer',
-                        whiteSpace: 'nowrap',
-                        transition: 'all 0.3s'
-                    }}
-                >
-                    All
-                </button>
-                {categories.map(cat => (
-                    <button 
-                        key={cat.id} 
-                        onClick={() => setSelectedCategory(cat.id)}
-                        style={{
-                            padding: '12px 24px',
-                            borderRadius: '30px',
-                            border: 'none',
-                            background: selectedCategory === cat.id ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.05)',
-                            color: 'white',
-                            fontSize: '0.95rem',
-                            fontWeight: '500',
-                            cursor: 'pointer',
-                            whiteSpace: 'nowrap',
-                            transition: 'all 0.3s'
-                        }}
-                    >
-                        {cat.category_name}
-                    </button>
-                ))}
-            </div>
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                <h2 style={{ fontSize: '1.3rem', fontWeight: '600' }}>Featured</h2>
-                <span style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.5)', cursor: 'pointer' }}>See All</span>
-            </div>
-
-            {fishes.length === 0 ? (
-                <div style={{ textAlign: 'center', padding: '50px', background: 'rgba(255,255,255,0.05)', borderRadius: '24px' }}>
-                    <p style={{ color: 'rgba(255,255,255,0.6)' }}>No fishes found</p>
-                </div>
-            ) : (
-                <div style={{ display: 'flex', gap: '20px', overflowX: 'auto', paddingBottom: '20px' }}>
-                    {fishes.map(fish => (
-                        <div key={fish.id} style={{ minWidth: '280px' }}>
-                            <FishCard fish={fish} />
+                {/* Main Product Grid */}
+                <div style={{ flex: 1 }}>
+                    {fishes.length === 0 ? (
+                        <div style={{ textAlign: 'center', padding: '80px', border: '1px solid rgba(0, 242, 254, 0.1)', borderRadius: '24px', background: 'rgba(4, 18, 34, 0.4)' }} className="fade-in">
+                            <h3 style={{ fontSize: '2rem', color: 'white', marginBottom: '15px' }}>No fishes found</h3>
+                            <p style={{ color: 'rgba(255,255,255,0.6)' }}>Try selecting a different category from our grand collection.</p>
                         </div>
-                    ))}
+                    ) : (
+                        <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                            gap: '30px'
+                        }} className="fade-in" style={{ animationDelay: '0.4s' }}>
+                            {fishes.map(fish => (
+                                <FishCard key={fish.id} fish={fish} />
+                            ))}
+                        </div>
+                    )}
                 </div>
-            )}
+
+            </div>
         </div>
     );
 };
