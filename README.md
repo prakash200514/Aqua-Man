@@ -47,3 +47,9 @@ BackgroundVideo: A reusable component to render the full-screen video, querying 
 Navbar: Glassmorphic navigation bar.
 FishCard: Product display with hover animations and "Add to Cart" functionality.
 CartModal/Page: Managing cart state.
+
+Pages
+Home: Grand hero section with the background video, featured products, categories.
+Products: Full catalog with filtering.
+Login/Register: Authentication pages.
+Admin Dashboard: Secure area to manage inventory, categories, orders, and background videos.
