@@ -41,3 +41,9 @@ React Router DOM for routing.
 Axios for API requests.
 React Toastify for toast notifications.
 Lucide React (or similar) for modern icons.
+
+Components
+BackgroundVideo: A reusable component to render the full-screen video, querying the backend for the active video.
+Navbar: Glassmorphic navigation bar.
+FishCard: Product display with hover animations and "Add to Cart" functionality.
+CartModal/Page: Managing cart state.
