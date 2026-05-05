@@ -1,0 +1,21 @@
+{
+  "name": "aquarium",
+  "version": "1.0.0",
+  "description": "AquaRiyum Implementation Plan\r We will build a grand, premium-looking aquarium fish sales website named AquaRiyum using React.js (Frontend), PHP (Backend API), and MySQL (Database).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prakash200514/Aqua-Man.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/prakash200514/Aqua-Man/issues"
+  },
+  "homepage": "https://github.com/prakash200514/Aqua-Man#readme"
+}
