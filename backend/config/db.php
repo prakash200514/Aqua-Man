@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 $host = 'localhost';
 $db_name = 'aquariyum';
 $username = 'root';
-$password = ''; // Default XAMPP password is empty
+$password = 'password'; // Default XAMPP password is empty
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);

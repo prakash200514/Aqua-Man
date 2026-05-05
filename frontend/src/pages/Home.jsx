@@ -1,101 +1,173 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import FishCard from '../components/FishCard';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 const Home = () => {
-    const [featuredFishes, setFeaturedFishes] = useState([]);
-
-    useEffect(() => {
-        const fetchFishes = async () => {
-            try {
-                const res = await axios.get('http://localhost/Aquarium/backend/api/fishes.php');
-                if (res.data.status === 'success') {
-                    setFeaturedFishes(res.data.fishes.slice(0, 3));
-                }
-            } catch (err) {
-                console.error(err);
-            }
-        };
-        fetchFishes();
-    }, []);
-
-    // Create some floating bubbles dynamically
-    const renderBubbles = () => {
-        let bubbles = [];
-        for (let i = 0; i < 15; i++) {
-            const size = Math.random() * 20 + 5;
-            const left = Math.random() * 100;
-            const delay = Math.random() * 10;
-            const duration = Math.random() * 10 + 10;
-            bubbles.push(
-                <div key={i} className="bubble" style={{
-                    width: `${size}px`, height: `${size}px`,
-                    left: `${left}%`, animationDelay: `${delay}s`,
-                    animationDuration: `${duration}s`
-                }}></div>
-            );
-        }
-        return bubbles;
-    };
-
     return (
-        <div>
-            <header className="hero fade-in">
-                <img src="/hero_bg.png" alt="Grand Aquarium" className="hero-bg" />
-                <div className="hero-overlay"></div>
-                {renderBubbles()}
+        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+            
+            {/* Top Bar Area */}
+            <div style={{ padding: '40px 30px', display: 'flex', justifyContent: 'flex-end', position: 'relative', zIndex: 10 }}>
+                <div style={{
+                    background: 'rgba(255,255,255,0.1)',
+                    padding: '8px 24px',
+                    borderRadius: '30px',
+                    color: 'white',
+                    fontSize: '0.9rem',
+                    fontWeight: '500',
+                    cursor: 'pointer'
+                }}>
+                    Skip
+                </div>
+            </div>
+
+            {/* Giant Background Typography */}
+            <div style={{
+                position: 'absolute',
+                top: '15%',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                fontSize: '9rem',
+                fontWeight: '800',
+                fontFamily: 'Outfit, sans-serif',
+                color: '#FFA9BB',
+                zIndex: 1,
+                lineHeight: 1,
+                letterSpacing: '-0.05em',
+                display: 'flex',
+                alignItems: 'center'
+            }}>
+                <div style={{ position: 'relative' }}>
+                    <div style={{
+                        position: 'absolute',
+                        top: '50%', left: '0',
+                        transform: 'translateY(-50%)',
+                        width: '120px', height: '120px',
+                        border: '25px solid #FF3B5C',
+                        borderRadius: '50%',
+                        zIndex: -1,
+                        opacity: 0.8
+                    }}></div>
+                    <div style={{
+                        position: 'absolute',
+                        top: '-20%', right: '-10%',
+                        width: '80px', height: '80px',
+                        border: '15px solid #E95A78',
+                        borderRadius: '50%',
+                        zIndex: -1,
+                        opacity: 0.6
+                    }}></div>
+                    Fish
+                </div>
+            </div>
+
+            {/* Floating Fish Image */}
+            <div style={{
+                flex: 1,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                position: 'relative',
+                zIndex: 5,
+                marginTop: '10vh'
+            }}>
+                <img 
+                    src="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?q=80&w=600&auto=format&fit=crop" 
+                    alt="Vibrant Fish" 
+                    className="floating"
+                    style={{
+                        width: '350px',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        filter: 'drop-shadow(0 30px 40px rgba(0,0,0,0.5)) hue-rotate(-20deg) saturate(2)',
+                        transform: 'rotate(-5deg)'
+                    }} 
+                />
+            </div>
+
+            {/* Bottom Content Area */}
+            <div style={{
+                background: 'linear-gradient(to top, #150308 0%, rgba(21, 3, 8, 0.8) 70%, transparent 100%)',
+                padding: '40px 30px',
+                paddingBottom: '50px',
+                position: 'relative',
+                zIndex: 10
+            }}>
+                <h1 style={{
+                    fontSize: '2.8rem',
+                    color: 'white',
+                    marginBottom: '15px',
+                    fontFamily: 'Outfit, sans-serif',
+                    fontWeight: '700',
+                    lineHeight: '1.2'
+                }}>
+                    Build Your Dream<br/>Aquarium
+                </h1>
                 
-                <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-                    <div className="glow-pulse" style={{ display: 'inline-block', marginBottom: '20px' }}>
-                        <span style={{ 
-                            background: 'rgba(0, 242, 254, 0.1)', 
-                            border: '1px solid var(--primary-neon)', 
-                            padding: '8px 20px', 
-                            borderRadius: '50px',
-                            color: 'var(--primary-neon)',
-                            fontWeight: '600',
-                            letterSpacing: '2px',
-                            textTransform: 'uppercase',
-                            fontSize: '0.9rem',
+                <p style={{
+                    color: 'rgba(255,255,255,0.6)',
+                    fontSize: '1.1rem',
+                    marginBottom: '40px',
+                    maxWidth: '80%',
+                    lineHeight: '1.5'
+                }}>
+                    Shop premium fish, tanks, and accessories delivered safely to your doorstep.
+                </p>
+
+                {/* Get Started Button */}
+                <Link to="/products" style={{ textDecoration: 'none' }}>
+                    <div style={{
+                        background: 'rgba(255,255,255,0.08)',
+                        border: '1px solid rgba(255,255,255,0.1)',
+                        borderRadius: '50px',
+                        padding: '10px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.15)'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
+                    >
+                        <div style={{
+                            background: 'rgba(255,255,255,0.1)',
+                            width: '50px', height: '50px',
+                            borderRadius: '50%',
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '8px'
-                        }}><Sparkles size={16} /> Premium Quality</span>
+                            justifyContent: 'center',
+                            color: 'white'
+                        }}>
+                            <ChevronRight size={24} />
+                        </div>
+                        
+                        <span style={{
+                            color: 'white',
+                            fontSize: '1.2rem',
+                            fontWeight: '500',
+                            flex: 1,
+                            textAlign: 'center'
+                        }}>
+                            Get Started
+                        </span>
+                        
+                        <div style={{
+                            width: '50px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            color: 'rgba(255,255,255,0.5)'
+                        }}>
+                            <ChevronRight size={20} style={{ marginLeft: '-15px' }}/>
+                            <ChevronRight size={20} style={{ marginLeft: '-10px' }}/>
+                            <ChevronRight size={20} style={{ marginLeft: '-10px' }}/>
+                        </div>
                     </div>
-                    <h1 className="floating">
-                        The Grand Collection <br /> of <span className="text-gradient">Colour Fishes</span>
-                    </h1>
-                    <p>Immerse yourself in a world of vibrant marine life. Buy the most healthy, exotic, and exceptionally colorful aquarium fishes from our grand showroom.</p>
-                    <Link to="/products" className="btn btn-primary" style={{ fontSize: '1.2rem', padding: '18px 45px' }}>
-                        Explore Collection <ArrowRight size={24} />
-                    </Link>
-                </div>
-            </header>
-
-            <section className="container" style={{ padding: '120px 20px', position: 'relative' }}>
-                <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: '1px', height: '80px', background: 'linear-gradient(to bottom, transparent, var(--primary-neon))' }}></div>
-                
-                <div style={{ textAlign: 'center', marginBottom: '70px', marginTop: '40px' }}>
-                    <h2 style={{ fontSize: '3rem', marginBottom: '15px' }}>Trending <span className="text-gradient-gold">Exotics</span></h2>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto' }}>Discover our most vibrant and sought-after underwater companions, curated for the grandest aquariums.</p>
-                </div>
-                
-                <div className="grid-3">
-                    {featuredFishes.map(fish => (
-                        <FishCard key={fish.id} fish={fish} />
-                    ))}
-                </div>
-                
-                <div style={{ textAlign: 'center', marginTop: '70px' }}>
-                    <Link to="/products" className="btn btn-outline" style={{ padding: '15px 40px', fontSize: '1.1rem' }}>
-                        View Full Gallery
-                    </Link>
-                </div>
-            </section>
+                </Link>
+            </div>
         </div>
     );
 };
 
 export default Home;
+

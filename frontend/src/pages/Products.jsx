@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import FishCard from '../components/FishCard';
-import { Filter } from 'lucide-react';
+import { Bell } from 'lucide-react';
 
 const Products = () => {
     const [fishes, setFishes] = useState([]);
@@ -37,42 +37,110 @@ const Products = () => {
     }, [selectedCategory]);
 
     return (
-        <div className="container" style={{ paddingTop: '150px', paddingBottom: '100px', minHeight: '100vh' }}>
-            <div style={{ textAlign: 'center', marginBottom: '60px' }} className="fade-in">
-                <h1 style={{ fontSize: '3.5rem', marginBottom: '15px' }}>The <span className="text-gradient">Grand Gallery</span></h1>
-                <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto' }}>Filter through our exclusive collection of the most vibrant and beautiful aquatic life.</p>
+        <div style={{ paddingTop: '80px', paddingBottom: '120px', minHeight: '100vh', paddingLeft: '20px', paddingRight: '20px' }}>
+            
+            {/* Header Section */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                    <img 
+                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80" 
+                        alt="User" 
+                        style={{ width: '45px', height: '45px', borderRadius: '50%', objectFit: 'cover' }} 
+                    />
+                    <div>
+                        <div style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)' }}>Hello Jobby 👋</div>
+                        <div style={{ fontSize: '1.1rem', fontWeight: '600' }}>Good Morning</div>
+                    </div>
+                </div>
+                
+                <div style={{
+                    width: '45px', height: '45px',
+                    borderRadius: '50%',
+                    background: 'rgba(255,255,255,0.1)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    position: 'relative'
+                }}>
+                    <Bell size={20} color="white" />
+                    <div style={{
+                        position: 'absolute', top: '10px', right: '12px',
+                        width: '8px', height: '8px', background: '#FF3B5C',
+                        borderRadius: '50%'
+                    }}></div>
+                </div>
             </div>
 
-            <div className="filters-wrapper fade-in" style={{ animationDelay: '0.2s' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--primary-neon)', marginRight: '10px', fontWeight: '600' }}>
-                    <Filter size={20} /> Filter By:
-                </div>
+            {/* Discover Header */}
+            <h1 style={{
+                fontSize: '2.5rem',
+                fontWeight: '700',
+                marginBottom: '30px',
+                fontFamily: 'Outfit, sans-serif',
+                lineHeight: '1.2'
+            }}>
+                Discover our<br />grand collection.
+            </h1>
+
+            {/* Categories */}
+            <div style={{
+                display: 'flex', gap: '15px', overflowX: 'auto', paddingBottom: '10px', marginBottom: '30px',
+                WebkitOverflowScrolling: 'touch',
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none'
+            }}>
                 <button 
-                    className={`filter-btn ${selectedCategory === '' ? 'active' : ''}`}
                     onClick={() => setSelectedCategory('')}
+                    style={{
+                        padding: '12px 24px',
+                        borderRadius: '30px',
+                        border: 'none',
+                        background: selectedCategory === '' ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.05)',
+                        color: 'white',
+                        fontSize: '0.95rem',
+                        fontWeight: '500',
+                        cursor: 'pointer',
+                        whiteSpace: 'nowrap',
+                        transition: 'all 0.3s'
+                    }}
                 >
-                    All Collection
+                    All
                 </button>
                 {categories.map(cat => (
                     <button 
                         key={cat.id} 
-                        className={`filter-btn ${selectedCategory === cat.id ? 'active' : ''}`}
                         onClick={() => setSelectedCategory(cat.id)}
+                        style={{
+                            padding: '12px 24px',
+                            borderRadius: '30px',
+                            border: 'none',
+                            background: selectedCategory === cat.id ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.05)',
+                            color: 'white',
+                            fontSize: '0.95rem',
+                            fontWeight: '500',
+                            cursor: 'pointer',
+                            whiteSpace: 'nowrap',
+                            transition: 'all 0.3s'
+                        }}
                     >
                         {cat.category_name}
                     </button>
                 ))}
             </div>
 
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                <h2 style={{ fontSize: '1.3rem', fontWeight: '600' }}>Featured</h2>
+                <span style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.5)', cursor: 'pointer' }}>See All</span>
+            </div>
+
             {fishes.length === 0 ? (
-                <div style={{ textAlign: 'center', padding: '80px', border: '1px solid var(--glass-border)', borderRadius: '24px', background: 'var(--glass-bg)' }} className="fade-in">
-                    <h3 style={{ fontSize: '2rem', color: 'var(--text-muted)', marginBottom: '15px' }}>No fishes found</h3>
-                    <p style={{ color: 'var(--text-muted)' }}>Try selecting a different category from our grand collection.</p>
+                <div style={{ textAlign: 'center', padding: '50px', background: 'rgba(255,255,255,0.05)', borderRadius: '24px' }}>
+                    <p style={{ color: 'rgba(255,255,255,0.6)' }}>No fishes found</p>
                 </div>
             ) : (
-                <div className="grid-3 fade-in" style={{ animationDelay: '0.4s' }}>
+                <div style={{ display: 'flex', gap: '20px', overflowX: 'auto', paddingBottom: '20px' }}>
                     {fishes.map(fish => (
-                        <FishCard key={fish.id} fish={fish} />
+                        <div key={fish.id} style={{ minWidth: '280px' }}>
+                            <FishCard fish={fish} />
+                        </div>
                     ))}
                 </div>
             )}
@@ -81,3 +149,4 @@ const Products = () => {
 };
 
 export default Products;
+
