@@ -17,3 +17,15 @@ We will set up the project within the c:\xampp\htdocs\Aquarium directory followi
 [NEW] database/aquariyum.sql
 Contains table definitions: users, categories, fishes, cart, orders, order_items, and background_videos.
 Includes initial seed data for categories and an admin user.
+
+2. Backend Layer (PHP) (backend/)
+[NEW] backend/config/db.php
+Handles the PDO connection to the MySQL database.
+[NEW] backend/api/ and backend/auth/
+Set of RESTful PHP endpoints returning JSON:
+auth/login.php, auth/register.php
+api/fishes.php (CRUD operations)
+api/categories.php
+api/cart.php
+api/orders.php
+api/background_videos.php (Upload and active toggle)
