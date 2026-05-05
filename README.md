@@ -58,3 +58,13 @@ UI & Styling Strategy
 Colors: Deep ocean blues, aqua, and cyan with subtle gradients.
 Glassmorphism: Using backdrop-filter: blur(10px) with semi-transparent white/blue backgrounds for cards and modals.
 Animations: CSS keyframes for floating effects, bubble animations, and smooth transitions on hover.
+
+Verification Plan
+Automated/Manual Tests
+Database: Import the SQL script and verify tables are created.
+Backend API: Test login, registration, and CRUD endpoints using Postman or directly via the frontend.
+Frontend UI:
+Run the React development server.
+Verify the background video plays and can be changed via the Admin Panel.
+Test the entire user flow: browsing fishes, adding to cart, logging in, and placing an order.
+Ensure the UI feels premium and matches the requested "grand aquarium" aesthetic.
