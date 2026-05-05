@@ -7,7 +7,7 @@ import CartOverlay from './components/CartOverlay';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetails';
-import Products from './pages/Products';
+
 import Login from './pages/Login';
 import Register from './pages/Register';
 import AdminDashboard from './pages/AdminDashboard';
