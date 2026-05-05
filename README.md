@@ -53,3 +53,8 @@ Home: Grand hero section with the background video, featured products, categorie
 Products: Full catalog with filtering.
 Login/Register: Authentication pages.
 Admin Dashboard: Secure area to manage inventory, categories, orders, and background videos.
+
+UI & Styling Strategy
+Colors: Deep ocean blues, aqua, and cyan with subtle gradients.
+Glassmorphism: Using backdrop-filter: blur(10px) with semi-transparent white/blue backgrounds for cards and modals.
+Animations: CSS keyframes for floating effects, bubble animations, and smooth transitions on hover.
