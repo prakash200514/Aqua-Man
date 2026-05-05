@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, User, LogOut, FishSymbol } from 'lucide-react';
+import { ShoppingCart, User, LogOut, Fish } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import { CartContext } from '../context/CartContext';
 
@@ -26,7 +26,7 @@ const Navbar = () => {
         <Link to="/" className="nav-logo">
           <div style={{ position: 'relative', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ position: 'absolute', width: '100%', height: '100%', background: 'var(--primary-neon)', filter: 'blur(10px)', opacity: '0.4', borderRadius: '50%' }}></div>
-            <FishSymbol className="text-gradient" size={32} style={{ position: 'relative', zIndex: 1 }} />
+            <Fish className="text-gradient" size={32} style={{ position: 'relative', zIndex: 1 }} />
           </div>
           <span>Aqua<span className="text-gradient">Riyum</span></span>
         </Link>
