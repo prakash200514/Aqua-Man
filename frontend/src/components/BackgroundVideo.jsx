@@ -18,16 +18,33 @@ const BackgroundVideo = () => {
         fetchActiveVideo();
     }, []);
 
+    const renderGlobalBubbles = () => {
+        let bubbles = [];
+        for (let i = 0; i < 20; i++) {
+            const size = Math.random() * 15 + 5;
+            const left = Math.random() * 100;
+            const delay = Math.random() * 15;
+            const duration = Math.random() * 15 + 15;
+            bubbles.push(
+                <div key={i} className="global-bubble" style={{
+                    width: `${size}px`, height: `${size}px`,
+                    left: `${left}%`, animationDelay: `${delay}s`,
+                    animationDuration: `${duration}s`
+                }}></div>
+            );
+        }
+        return bubbles;
+    };
+
     return (
-        <div className="bg-video-container">
-            {videoSrc ? (
+        <div className="bg-video-container animated-gradient-bg">
+            {videoSrc && (
                 <video className="bg-video" autoPlay loop muted playsInline>
                     <source src={videoSrc} type="video/mp4" />
                 </video>
-            ) : (
-                <div className="bg-video" style={{ background: 'linear-gradient(to right, #000428, #004e92)' }}></div>
             )}
             <div className="video-overlay"></div>
+            {renderGlobalBubbles()}
         </div>
     );
 };
