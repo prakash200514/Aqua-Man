@@ -48,18 +48,20 @@ const ProductDetails = () => {
                         background: 'linear-gradient(145deg, rgba(4,18,34,0.8), rgba(1,6,13,0.8))',
                         border: '1px solid rgba(0,242,254,0.1)',
                         borderRadius: '24px',
-                        padding: '40px',
+                        padding: '30px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         position: 'relative',
-                        minHeight: '500px'
+                        minHeight: '400px',
+                        overflow: 'hidden'
                     }}>
                         {fish.stock <= 0 && (
                             <div style={{
                                 position: 'absolute', top: '20px', left: '20px',
                                 background: 'rgba(239, 68, 68, 0.9)', color: 'white',
-                                padding: '6px 16px', borderRadius: '8px', fontSize: '1rem', fontWeight: 'bold'
+                                padding: '6px 16px', borderRadius: '8px', fontSize: '1rem', fontWeight: 'bold',
+                                zIndex: 10
                             }}>
                                 Out of Stock
                             </div>
@@ -68,12 +70,15 @@ const ProductDetails = () => {
                             src={fish.image ? `http://localhost/Aquarium/backend/uploads/fish_images/${fish.image}` : 'https://images.unsplash.com/photo-1524704654690-b56c05c78a00?q=80&w=800&auto=format&fit=crop'} 
                             alt={fish.fish_name}
                             style={{
-                                width: '100%',
-                                maxHeight: '400px',
-                                objectFit: 'contain',
-                                filter: 'drop-shadow(0 30px 50px rgba(0,0,0,0.8))',
-                                transform: 'scale(1.1)'
+                                maxWidth: '100%',
+                                maxHeight: '450px',
+                                objectFit: 'cover',
+                                borderRadius: '16px',
+                                filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.6))',
+                                transition: 'transform 0.5s ease'
                             }}
+                            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03)'}
+                            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                         />
                     </div>
                 </div>
