@@ -1,31 +1,26 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { X, Minus, Plus, Trash2 } from 'lucide-react';
 import { CartContext } from '../context/CartContext';
 import { AuthContext } from '../context/AuthContext';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const CartOverlay = () => {
-    const { cart, isCartOpen, setIsCartOpen, updateQuantity, removeFromCart, fetchCart } = useContext(CartContext);
+    const { cart, isCartOpen, setIsCartOpen, updateQuantity, removeFromCart } = useContext(CartContext);
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const totalAmount = cart.reduce((sum, item) => sum + (parseFloat(item.price) * parseInt(item.quantity)), 0);
 
-    const placeOrder = async () => {
-        if (!user) return;
-        try {
-            const res = await axios.post('http://localhost/Aquarium/backend/api/orders.php', {
-                user_id: user.id,
-                total_amount: totalAmount
-            });
-            if (res.data.status === 'success') {
-                toast.success("Order placed successfully!");
-                fetchCart();
-                setIsCartOpen(false);
-            }
-        } catch (err) {
-            toast.error("Failed to place order.");
+    const handleCheckout = () => {
+        if (!user) {
+            toast.error("Please login to checkout");
+            setIsCartOpen(false);
+            navigate('/login');
+            return;
         }
+        setIsCartOpen(false);
+        navigate('/checkout');
     };
 
     return (
@@ -67,7 +62,7 @@ const CartOverlay = () => {
                         <span style={{fontSize:'1.2rem', fontWeight:'500'}}>Total:</span>
                         <span style={{fontSize:'1.2rem', fontWeight:'bold', color:'var(--success)'}}>${totalAmount.toFixed(2)}</span>
                     </div>
-                    <button className="btn btn-primary" style={{width:'100%'}} onClick={placeOrder}>Checkout Now</button>
+                    <button className="btn btn-primary" style={{width:'100%'}} onClick={handleCheckout}>Checkout Now</button>
                 </div>
             )}
         </div>
