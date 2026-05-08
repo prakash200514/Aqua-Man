@@ -49,7 +49,7 @@ const Home = () => {
                 justifyContent: 'center',
                 textAlign: 'center',
                 position: 'relative',
-                paddingTop: '80px',
+                paddingTop: '140px',
                 overflow: 'hidden'
             }}>
                 <div style={{

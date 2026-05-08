@@ -30,13 +30,8 @@ const Navbar = () => {
       <div className="container nav-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0' }}>
         
         {/* Logo */}
-        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{
-                width: '40px', height: '40px', borderRadius: '50%',
-                background: 'linear-gradient(135deg, #00F2FE, #00A3FF)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                boxShadow: '0 0 20px rgba(0, 242, 254, 0.4)'
-            }}>
+        <Link to="/" className="nav-logo" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div className="logo-icon">
                 <span style={{ color: '#01060D', fontWeight: '800', fontSize: '1.2rem', fontFamily: 'Syne, sans-serif' }}>A</span>
             </div>
             <span style={{ fontSize: '1.5rem', fontWeight: '800', fontFamily: 'Syne, sans-serif', color: 'white' }}>
@@ -45,17 +40,9 @@ const Navbar = () => {
         </Link>
 
         {/* Center Links */}
-        <div style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
-          <Link to="/" style={{ 
-              color: location.pathname === '/' ? '#00F2FE' : 'white', 
-              textDecoration: 'none', fontWeight: '500', fontSize: '1rem',
-              transition: 'color 0.3s'
-          }}>Home</Link>
-          <Link to="/products" style={{ 
-              color: location.pathname === '/products' ? '#00F2FE' : 'white', 
-              textDecoration: 'none', fontWeight: '500', fontSize: '1rem',
-              transition: 'color 0.3s'
-          }}>Shop Collection</Link>
+        <div className="nav-links">
+          <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
+          <Link to="/products" className={location.pathname === '/products' ? 'active' : ''}>Shop Collection</Link>
         </div>
         
         {/* Right Actions */}
