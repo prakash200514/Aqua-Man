@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { ShoppingBag, Star } from 'lucide-react';
 import { CartContext } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { inr } from '../utils/currency';
 
 const FishCard = ({ fish }) => {
     const { addToCart } = useContext(CartContext);
@@ -132,7 +133,7 @@ const FishCard = ({ fish }) => {
                 {/* Price & Button */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
                     <div style={{ fontSize: '1.5rem', fontWeight: '800', color: '#FF6B6B' }}>
-                        ${fish.price}
+                        {inr(fish.price)}
                     </div>
                     <button
                         onClick={(e) => {
