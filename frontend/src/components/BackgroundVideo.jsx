@@ -20,17 +20,17 @@ const BackgroundVideo = () => {
 
     const renderGlobalBubbles = () => {
         let bubbles = [];
-        for (let i = 0; i < 20; i++) {
-            const size = Math.random() * 15 + 5;
+        for (let i = 0; i < 22; i++) {
+            const size = Math.random() * 18 + 5;
             const left = Math.random() * 100;
-            const delay = Math.random() * 15;
-            const duration = Math.random() * 15 + 15;
+            const delay = Math.random() * 18;
+            const duration = Math.random() * 16 + 14;
             bubbles.push(
                 <div key={i} className="global-bubble" style={{
                     width: `${size}px`, height: `${size}px`,
                     left: `${left}%`, animationDelay: `${delay}s`,
                     animationDuration: `${duration}s`
-                }}></div>
+                }} />
             );
         }
         return bubbles;
@@ -43,7 +43,7 @@ const BackgroundVideo = () => {
                     <source src={videoSrc} type="video/mp4" />
                 </video>
             )}
-            <div className="video-overlay"></div>
+            <div className="video-overlay" />
             {renderGlobalBubbles()}
         </div>
     );

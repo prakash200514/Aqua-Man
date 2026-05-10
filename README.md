@@ -1,70 +1,84 @@
-AquaRiyum Implementation Plan
-We will build a grand, premium-looking aquarium fish sales website named AquaRiyum using React.js (Frontend), PHP (Backend API), and MySQL (Database).
+# 🌊 AquaRiyum
 
-Overview
-The goal is to create a visually stunning e-commerce platform with an immersive ocean/aquarium theme. It will feature a dynamic, full-screen moving fish background video, smooth glassmorphism effects, and micro-animations to deliver a high-end showroom experience.
+**AquaRiyum** is a premium, cinematic underwater-themed e-commerce platform designed for selling exotic colorful fishes. It features a grand, dynamic user interface with glassmorphism effects, a full-screen animated background, and a seamless shopping experience. 
 
-Open Questions
-IMPORTANT
+## ✨ Features
 
-Do you already have a specific background video and fish images to use, or should I generate placeholder images and use a generic underwater stock video?
-For local development, assuming your database credentials are root with no password for XAMPP. Please confirm if there are any specific credentials I should use.
+- **Immersive UI/UX**: High-end desktop experience with deep ocean blue palettes, glassmorphism, and cinematic hero sections.
+- **Dynamic Backgrounds**: Full-screen video backgrounds that can be updated dynamically from the admin panel to keep the storefront fresh.
+- **Product Gallery**: Comprehensive product catalog with filtering options, detailed fish cards, and hover animations.
+- **Shopping Cart & Checkout**: Robust cart system with a beautiful slide-out overlay and seamless checkout flow.
+- **User Authentication**: Secure login and registration system for customers to manage their orders.
+- **Admin Dashboard**: Dedicated admin panel to manage inventory (CRUD for fishes and categories), handle orders, and upload new background videos.
 
-Proposed Changes
-We will set up the project within the c:\xampp\htdocs\Aquarium directory following the requested folder structure.
+## 🛠️ Tech Stack
 
-1. Database Layer (database/)
-[NEW] database/aquariyum.sql
-Contains table definitions: users, categories, fishes, cart, orders, order_items, and background_videos.
-Includes initial seed data for categories and an admin user.
+### Frontend
+- **Framework**: React.js (via Vite)
+- **Styling**: Vanilla CSS with modern flexbox/grid layouts and glassmorphism (backdrop-filter)
+- **Routing**: React Router DOM
+- **State Management**: Context API (AuthContext, CartContext)
+- **Icons & Notifications**: Lucide React, React Toastify
 
-2. Backend Layer (PHP) (backend/)
-[NEW] backend/config/db.php
-Handles the PDO connection to the MySQL database.
-[NEW] backend/api/ and backend/auth/
-Set of RESTful PHP endpoints returning JSON:
-auth/login.php, auth/register.php
-api/fishes.php (CRUD operations)
-api/categories.php
-api/cart.php
-api/orders.php
-api/background_videos.php (Upload and active toggle)
+### Backend
+- **Language**: PHP (RESTful API architecture)
+- **Database**: MySQL (using PDO for secure queries)
+- **Authentication**: Custom token/session-based auth
 
-[NEW] backend/uploads/
-Directories fish_images/ and videos/ for storing uploaded assets.
-3. Frontend Layer (React + Vite) (frontend/)
-We will initialize a new React project using Vite.
+## 🚀 Installation & Setup
 
-Architecture and Dependencies
-React.js with Vanilla CSS for full styling control.
-React Router DOM for routing.
-Axios for API requests.
-React Toastify for toast notifications.
-Lucide React (or similar) for modern icons.
+### Prerequisites
+- [XAMPP](https://www.apachefriends.org/index.html) (or any similar AMP stack)
+- [Node.js](https://nodejs.org/) (v16 or higher)
 
-Components
-BackgroundVideo: A reusable component to render the full-screen video, querying the backend for the active video.
-Navbar: Glassmorphic navigation bar.
-FishCard: Product display with hover animations and "Add to Cart" functionality.
-CartModal/Page: Managing cart state.
+### 1. Database Setup
+1. Open XAMPP and start the **Apache** and **MySQL** modules.
+2. Open your browser and navigate to `http://localhost/phpmyadmin`.
+3. Create a new database named `aquariyum`.
+4. Import the provided SQL file located at `database/aquariyum.sql` into the newly created database.
 
-Pages
-Home: Grand hero section with the background video, featured products, categories.
-Products: Full catalog with filtering.
-Login/Register: Authentication pages.
-Admin Dashboard: Secure area to manage inventory, categories, orders, and background videos.
+### 2. Backend Setup (PHP API)
+1. Clone or move the project repository into your `htdocs` directory (e.g., `C:\xampp\htdocs\Aquarium`).
+2. Ensure the backend files are located at `C:\xampp\htdocs\Aquarium\backend`.
+3. Configure the database connection if necessary in `backend/config/db.php`. (Default is usually `root` with no password for XAMPP).
+4. The API endpoints will be available at `http://localhost/Aquarium/backend/api/...`
 
-UI & Styling Strategy
-Colors: Deep ocean blues, aqua, and cyan with subtle gradients.
-Glassmorphism: Using backdrop-filter: blur(10px) with semi-transparent white/blue backgrounds for cards and modals.
-Animations: CSS keyframes for floating effects, bubble animations, and smooth transitions on hover.
+### 3. Frontend Setup (React)
+1. Open a terminal and navigate to the frontend directory:
+   ```bash
+   cd C:\xampp\htdocs\Aquarium\frontend
+   ```
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. The React application will typically run on `http://localhost:5173`. Open this URL in your browser to view the storefront!
 
-Verification Plan
-Automated/Manual Tests
-Database: Import the SQL script and verify tables are created.
-Backend API: Test login, registration, and CRUD endpoints using Postman or directly via the frontend.
-Frontend UI:
-Run the React development server.
-Verify the background video plays and can be changed via the Admin Panel.
-Test the entire user flow: browsing fishes, adding to cart, logging in, and placing an order.
-Ensure the UI feels premium and matches the requested "grand aquarium" aesthetic.
+## 📁 Project Structure
+
+```text
+Aquarium/
+├── backend/                # PHP RESTful API
+│   ├── api/                # Endpoints for fishes, categories, cart, orders
+│   ├── auth/               # Login and registration logic
+│   ├── config/             # Database connection setup
+│   └── uploads/            # Stored assets (fish images, videos)
+├── database/               # SQL dump files
+│   └── aquariyum.sql
+└── frontend/               # React Application
+    ├── src/
+    │   ├── components/     # Reusable UI components (Navbar, CartOverlay, etc.)
+    │   ├── context/        # Global state (Auth, Cart)
+    │   ├── pages/          # Full page views (Home, Products, Login, Admin)
+    │   ├── index.css       # Global styles & glassmorphism utilities
+    │   └── App.jsx         # Main router setup
+    ├── package.json
+    └── vite.config.js
+```
+
+## 🤝 Contributing
+Contributions, issues, and feature requests are welcome!
