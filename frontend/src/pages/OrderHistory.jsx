@@ -6,6 +6,7 @@ import {
   Package, Calendar, MapPin, ChevronDown, ChevronUp,
   Printer, ShoppingBag, Clock, CheckCircle, Truck, Fish
 } from 'lucide-react';
+import { inr } from '../utils/currency';
 
 /* ── Helpers ─────────────────────────────────────── */
 const fmt = (d) =>
@@ -36,9 +37,9 @@ const printReceipt = (order) => {
     <tr>
       <td style="padding:10px 0;border-bottom:1px solid #e8f4fc;">${it.fish_name}</td>
       <td style="padding:10px 0;border-bottom:1px solid #e8f4fc;text-align:center;">${it.quantity}</td>
-      <td style="padding:10px 0;border-bottom:1px solid #e8f4fc;text-align:right;">$${parseFloat(it.price).toFixed(2)}</td>
+      <td style="padding:10px 0;border-bottom:1px solid #e8f4fc;text-align:right;">&#8377;${parseFloat(it.price).toLocaleString('en-IN',{minimumFractionDigits:2})}</td>
       <td style="padding:10px 0;border-bottom:1px solid #e8f4fc;text-align:right;font-weight:700;color:#FF6B6B;">
-        $${(it.quantity * parseFloat(it.price)).toFixed(2)}
+        &#8377;${(it.quantity * parseFloat(it.price)).toLocaleString('en-IN',{minimumFractionDigits:2})}
       </td>
     </tr>`).join('');
 
@@ -100,7 +101,7 @@ const printReceipt = (order) => {
         <div class="meta-row" style="margin-top:12px;"><span class="meta-label">Shipping</span><span class="meta-value" style="color:#00C9A7;">FREE 🚀</span></div>
         <div class="total-box">
           <span class="total-label">Total Paid</span>
-          <span class="total-amt">$${parseFloat(order.total_amount).toFixed(2)}</span>
+          <span class="total-amt">&#8377;${parseFloat(order.total_amount).toLocaleString('en-IN',{minimumFractionDigits:2})}</span>
         </div>
 
         <div class="delivery-box">
@@ -177,7 +178,7 @@ const OrderCard = ({ order }) => {
           </div>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '0.75rem', color: '#5B7D90', textTransform: 'uppercase', letterSpacing: '1px' }}>Total</div>
-            <div style={{ fontWeight: '800', color: '#FF6B6B', fontSize: '1.1rem' }}>${parseFloat(order.total_amount).toFixed(2)}</div>
+            <div style={{ fontWeight: '800', color: '#FF6B6B', fontSize: '1.1rem' }}>{inr(order.total_amount)}</div>
           </div>
           {/* Status badge */}
           <div style={{
@@ -224,11 +225,11 @@ const OrderCard = ({ order }) => {
                 <div style={{ flex: 1 }}>
                   <div style={{ fontWeight: '700', color: '#1A3C52', fontSize: '0.97rem' }}>{item.fish_name}</div>
                   <div style={{ color: '#5B7D90', fontSize: '0.83rem', marginTop: '2px' }}>
-                    Qty: {item.quantity} × ${parseFloat(item.price).toFixed(2)}
+                    Qty: {item.quantity} × {inr(item.price)}
                   </div>
                 </div>
                 <div style={{ fontWeight: '800', color: '#FF6B6B', fontSize: '1.05rem' }}>
-                  ${(item.quantity * parseFloat(item.price)).toFixed(2)}
+                  {inr(item.quantity * parseFloat(item.price))}
                 </div>
               </div>
             ))}
@@ -284,7 +285,7 @@ const OrderCard = ({ order }) => {
                 Total Paid
               </div>
               <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: '800', color: '#FF6B6B', fontSize: '1.6rem' }}>
-                ${parseFloat(order.total_amount).toFixed(2)}
+                {inr(order.total_amount)}
               </div>
               <div style={{ color: '#5B7D90', fontSize: '0.78rem', marginTop: '2px' }}>Free Shipping</div>
             </div>
@@ -369,7 +370,7 @@ const OrderHistory = () => {
             {[
               { icon: '🛒', label: 'Total Orders', value: orders.length },
               { icon: '🐠', label: 'Fish Ordered', value: totalItems },
-              { icon: '💰', label: 'Total Spent',  value: `$${totalSpent.toFixed(2)}` },
+              { icon: '💰', label: 'Total Spent',  value: inr(totalSpent) },
             ].map(s => (
               <div key={s.label} style={{
                 flex: '1 1 160px', background: '#fff',
