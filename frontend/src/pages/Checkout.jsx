@@ -373,7 +373,7 @@ const Checkout = () => {
               >
                 {isProcessing
                   ? <><span style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }}>⏳</span> Processing Payment...</>
-                  : <><ShoppingBag size={20} /> Pay ${totalAmount.toFixed(2)} & Get Receipt</>
+                  : <><ShoppingBag size={20} /> Pay {inr(totalAmount)} & Get Receipt</>
                 }
               </button>
             </form>
@@ -408,14 +408,14 @@ const Checkout = () => {
                       <div style={{ fontWeight: '700', fontSize: '0.95rem', color: '#1A3C52' }}>{item.fish_name}</div>
                       <div style={{ color: '#5B7D90', fontSize: '0.84rem', marginTop: '3px' }}>Qty: {item.quantity}</div>
                       <div style={{ color: '#FF6B6B', fontWeight: '800', marginTop: '4px' }}>
-                        ${(item.price * item.quantity).toFixed(2)}
+                        {inr(item.price * item.quantity)}
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
 
-              {[['Subtotal', `$${totalAmount.toFixed(2)}`], ['Shipping', 'FREE'], ['Tax', '$0.00']].map(([l, v]) => (
+              {[['Subtotal', inr(totalAmount)], ['Shipping', 'FREE'], ['Tax', '₹0.00']].map(([l, v]) => (
                 <div key={l} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', color: '#5B7D90', fontSize: '0.93rem' }}>
                   <span>{l}</span>
                   <span style={{ color: l === 'Shipping' ? '#00C9A7' : '#1A3C52', fontWeight: '600' }}>{v}</span>
@@ -428,7 +428,7 @@ const Checkout = () => {
                 fontSize: '1.3rem', fontWeight: '800'
               }}>
                 <span style={{ fontFamily: 'Syne, sans-serif', color: '#1A3C52' }}>Total</span>
-                <span style={{ color: '#FF6B6B' }}>${totalAmount.toFixed(2)}</span>
+                <span style={{ color: '#FF6B6B' }}>{inr(totalAmount)}</span>
               </div>
 
               <div style={{
