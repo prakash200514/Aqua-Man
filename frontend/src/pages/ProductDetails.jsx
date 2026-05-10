@@ -6,6 +6,7 @@ import {
   ShieldCheck, Droplets, Ruler, ArrowLeft, Fish
 } from 'lucide-react';
 import { CartContext } from '../context/CartContext';
+import { inr } from '../utils/currency';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -188,7 +189,7 @@ const ProductDetails = () => {
                   fontFamily: 'Syne, sans-serif',
                   fontSize: '2rem', fontWeight: '800', color: '#FF6B6B'
                 }}>
-                  ${parseFloat(fish.price).toFixed(2)}
+                  {inr(fish.price)}
                 </span>
                 <span style={{ color: '#5B7D90', fontSize: '0.9rem', marginLeft: '8px' }}>/ piece</span>
               </div>
