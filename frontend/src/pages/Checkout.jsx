@@ -8,6 +8,7 @@ import {
   CreditCard, MapPin, CheckCircle, Printer,
   Package, Fish, Calendar, ShoppingBag, Home
 } from 'lucide-react';
+import { inr } from '../utils/currency';
 
 /* ─── helpers ─────────────────────────────────── */
 const fmt = (d) =>
@@ -133,10 +134,10 @@ const ReceiptModal = ({ receipt, onClose, onGoHome }) => {
               }}>
                 <div>
                   <div style={{ fontWeight: '700', color: '#1A3C52', fontSize: '0.97rem' }}>{item.fish_name}</div>
-                  <div style={{ color: '#5B7D90', fontSize: '0.84rem', marginTop: '2px' }}>Qty: {item.quantity} × ${parseFloat(item.price).toFixed(2)}</div>
+                  <div style={{ color: '#5B7D90', fontSize: '0.84rem', marginTop: '2px' }}>Qty: {item.quantity} × {inr(item.price)}</div>
                 </div>
                 <div style={{ fontWeight: '800', color: '#FF6B6B', fontSize: '1.05rem' }}>
-                  ${(item.quantity * parseFloat(item.price)).toFixed(2)}
+                  {inr(item.quantity * parseFloat(item.price))}
                 </div>
               </div>
             ))}
@@ -144,9 +145,9 @@ const ReceiptModal = ({ receipt, onClose, onGoHome }) => {
             {/* Totals */}
             <div style={{ marginTop: '16px' }}>
               {[
-                ['Subtotal', `$${parseFloat(receipt.total_amount).toFixed(2)}`],
+                ['Subtotal', inr(receipt.total_amount)],
                 ['Shipping', 'FREE 🚀'],
-                ['Tax (GST)', '$0.00'],
+                ['Tax (GST)', '₹0.00'],
               ].map(([l, v]) => (
                 <div key={l} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', color: '#5B7D90', fontSize: '0.93rem' }}>
                   <span>{l}</span><span style={{ color: '#1A3C52', fontWeight: '600' }}>{v}</span>
@@ -160,7 +161,7 @@ const ReceiptModal = ({ receipt, onClose, onGoHome }) => {
               }}>
                 <span style={{ fontFamily: 'Syne, sans-serif', fontSize: '1.1rem', color: '#1A3C52', fontWeight: '700' }}>Total Paid</span>
                 <span style={{ fontFamily: 'Syne, sans-serif', fontSize: '1.9rem', fontWeight: '800', color: '#FF6B6B' }}>
-                  ${parseFloat(receipt.total_amount).toFixed(2)}
+                  {inr(receipt.total_amount)}
                 </span>
               </div>
             </div>
