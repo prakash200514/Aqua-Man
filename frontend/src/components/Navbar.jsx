@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, User, LogOut } from 'lucide-react';
+import { ShoppingCart, User, ClipboardList } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import { CartContext } from '../context/CartContext';
 
@@ -49,6 +49,9 @@ const Navbar = () => {
         <div className="nav-links">
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
           <Link to="/products" className={location.pathname === '/products' ? 'active' : ''}>Shop Collection</Link>
+          {user && (
+            <Link to="/orders" className={location.pathname === '/orders' ? 'active' : ''}>My Orders</Link>
+          )}
         </div>
 
         {/* Right Actions */}
