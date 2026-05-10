@@ -60,7 +60,7 @@
 
 ## 📁 Project Structure
 
-```text
+
 Aquarium/
 ├── backend/                # PHP RESTful API
 │   ├── api/                # Endpoints for fishes, categories, cart, orders
